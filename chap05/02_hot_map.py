@@ -14,7 +14,7 @@ x = np.expand_dims(x, axis=0)
 x = preprocess_input(x)
 
 print('=============== 2222 =============')
-model = VGG16(weights='imagenet', include_top=False)
+model = VGG16(weights='imagenet', include_top=True)
 preds = model.predict(x)
 
 print('=============== 3333 =============')
