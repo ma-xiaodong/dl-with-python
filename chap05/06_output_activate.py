@@ -19,7 +19,7 @@ if __name__ == '__main__':
     plt.imshow(img_tensor[0])
     plt.show()
 
-    #model.summary()
+    model.summary()
     layer_outputs = [layer.output for layer in model.layers[:8]]
     activate_model = models.Model(inputs=model.input, outputs=layer_outputs)
     activations = activate_model.predict(img_tensor)
