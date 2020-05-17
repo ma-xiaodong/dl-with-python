@@ -9,7 +9,7 @@ import pdb
 if __name__ == '__main__':
     model = load_model('./models/cats_and_dogs_4000.h5')
     base_dir = '/media/mxd/Document/data/kagglecatsanddogs/PetImages_small'
-    image_path = os.path.join(base_dir, 'train/dogs/29.jpg')
+    image_path = os.path.join(base_dir, 'test/dogs/4532.jpg')
 
     img = image.load_img(image_path, target_size=(150, 150))
     img_tensor = image.img_to_array(img)
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     layer_idx = 0
     for activation in activations:
         _, _, _, channels = activation.shape
-        for channel in range(channels):
+        for channel in range(5):
             plt.matshow(activation[0, :, :, channel], cmap='viridis')
             plt.savefig('./fig' + str(layer_idx) + '_' + str(channel) + '.png')
         layer_idx += 1

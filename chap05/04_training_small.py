@@ -12,6 +12,9 @@ TEST_SZ=500
 BATCH_SZ=20
 EPOCHS=10
 
+HEIGHT=150
+WIDTH=150
+
 def copy_pics(original_cats_dir, original_dogs_dir, 
               train_dir, validation_dir, test_dir):
     os.mkdir(train_dir)
@@ -74,7 +77,7 @@ def copy_pics(original_cats_dir, original_dogs_dir,
 def training(train_sz, train_dir, validation_dir, test_dir):
     model = models.Sequential()
     model.add(layers.Conv2D(32, (3, 3), activation='relu', 
-                            input_shape=(150, 150, 3)))
+                            input_shape=(HEIGHT, WIDTH, 3)))
     model.add(layers.MaxPooling2D(2, 2))
     model.add(layers.Conv2D(64, (3, 3), activation='relu')) 
     model.add(layers.MaxPooling2D(2, 2))
@@ -97,12 +100,12 @@ def training(train_sz, train_dir, validation_dir, test_dir):
 
     train_generator = train_datagen.flow_from_directory(
             train_dir,
-            target_size=(150, 150),
+            target_size=(HEIGHT, WIDTH),
             batch_size=BATCH_SZ,
             class_mode='binary')
     validation_generator = validation_datagen.flow_from_directory(
             validation_dir,
-            target_size=(150, 150),
+            target_size=(HEIGHT, WIDTH),
             batch_size=BATCH_SZ,
             class_mode='binary')
 
@@ -119,7 +122,7 @@ def test(train_sz, test_dir):
     test_datagen = ImageDataGenerator(rescale=1./255)
     test_generator = test_datagen.flow_from_directory(
             test_dir,
-            target_size=(150, 150),
+            target_size=(HEIGHT, WIDTH),
             batch_size=BATCH_SZ,
             class_mode='binary')
 
