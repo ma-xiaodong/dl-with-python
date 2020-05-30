@@ -34,7 +34,8 @@ tokenizer.fit_on_texts(texts)
 sequences = tokenizer.texts_to_sequences(texts)
 
 word_index = tokenizer.word_index
-print('Found %s unique tokens, and %s sequences' % (len(word_index), len(sequences)))
+print('Found %s unique tokens, and %s sequences' 
+      % (len(word_index), len(sequences)))
 
 data = pad_sequences(sequences, maxlen=max_len)
 labels = np.asarray(labels)
